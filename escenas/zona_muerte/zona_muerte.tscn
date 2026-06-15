@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://chc7a4r0td2v4"]
+
+[node name="zona_muerte" type="Area2D" unique_id=2125153091]
+position = Vector2(-2, 0)

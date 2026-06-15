@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="20gc 02 Break Out"
+run/main_scene="uid://sygv1g1cwn4b"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Gamestate="*uid://cd1cynyavjgnt"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://idiomas/traducciones.en.translation", "res://idiomas/traducciones.es.translation")
+locale/locale_filter_mode=1
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

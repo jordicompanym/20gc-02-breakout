@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://sygv1g1cwn4b"]
+
+[ext_resource type="PackedScene" uid="uid://c6ckoj801l5rf" path="res://escenas/botones/nueva_partida.tscn" id="1_ukska"]
+[ext_resource type="PackedScene" uid="uid://dpkvr7v6rqtbd" path="res://escenas/botones/opciones.tscn" id="2_vbxqd"]
+[ext_resource type="PackedScene" uid="uid://dvk6e00rl4w4r" path="res://escenas/botones/salir.tscn" id="3_mjf1w"]
+
+[node name="pantalla_inicial" type="Control" unique_id=1043735601]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=76236853]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=1473287248]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -50.5
+offset_right = 68.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer" unique_id=194035674]
+layout_mode = 2
+
+[node name="nueva_partida" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=545438801 instance=ExtResource("1_ukska")]
+layout_mode = 2
+
+[node name="opciones" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1751182535 instance=ExtResource("2_vbxqd")]
+layout_mode = 2
+
+[node name="salir" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=63701256 instance=ExtResource("3_mjf1w")]
+layout_mode = 2

@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bykwtjnbtpy7u"]
+
+[node name="pelota" type="RigidBody2D" unique_id=2133698368]

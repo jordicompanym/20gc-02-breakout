@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ch3o5xbtx2cy"]
+
+[node name="reanudar_partida" type="Button" unique_id=1217476120]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "REANUDAR_PARTIDA"
