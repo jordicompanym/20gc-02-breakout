@@ -1,4 +1,4 @@
 extends Button
 
-func _on_pressed() -> void:
-	Gamestate.salir()
+func _on_pressed() -> void:	
+	EstadoJuego.salir()

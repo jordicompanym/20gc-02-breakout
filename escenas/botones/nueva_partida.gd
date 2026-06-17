@@ -1,4 +1,4 @@
 extends Button
 
 func _on_pressed() -> void:
-	Gamestate.nueva_partida()
+	EstadoJuego.nueva_partida()
