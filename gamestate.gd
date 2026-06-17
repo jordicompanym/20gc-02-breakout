@@ -2,7 +2,6 @@ extends Node
 
 var puntuacion : int = 0
 var vidas : int = 5
-
 const RUTA_CONFIG := "user://configuracion.cfg"
 var configuracion := ConfigFile.new()
 
@@ -17,7 +16,8 @@ func _ready() -> void:
 
 ## Funcion para cargar el idioma de la configuracion
 func _cargar_idioma() -> void:
-	var idioma : String = configuracion.get_value("ajustes", "idioma", "es")	
+	var idioma : String = configuracion.get_value("juego", "idioma", "es")
+	print_debug(idioma)
 	TranslationServer.set_locale(idioma)
 
 ## Funcion para generar la configuracion por defecto	
@@ -51,3 +51,30 @@ func perder_vida() -> void:
 
 func salir() -> void:
 	get_tree().quit()
+
+func lista_idiomas_disponibles() -> Array:
+	var idiomas := TranslationServer.get_loaded_locales()
+	var literales : Array
+	var x := 0
+	for idioma in idiomas:
+		var item = {"id" : x, "codigo" : idioma, "nombre" : TranslationServer.get_locale_name(idioma)}
+		literales.append(item)
+		x += 1
+
+	return literales
+
+func idioma_cfg() -> String:
+	return configuracion.get_value("juego","idioma")
+	
+func dificultad_cfg() -> String:
+	return configuracion.get_value("juego","dificultad")
+
+func volumen_musica_cfg() -> int:
+	return configuracion.get_value("audio","volumen_musica")
+
+func volumen_sfx_cfg() -> int:
+	return configuracion.get_value("audio","volumen_sfx")
+	
+func pantalla_completa_cfg() -> bool:
+	return configuracion.get_value("video","pantalla_completa")
+	

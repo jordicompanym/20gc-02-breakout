@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://xqpo4msmg8q3"]
 
+[ext_resource type="Script" uid="uid://2i0jm1eiymhc" path="res://escenas/pantallas/pantalla_opciones.gd" id="1_m6gaf"]
+
 [node name="pantalla_opciones" type="Control" unique_id=577618985]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_m6gaf")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1480534203]
 layout_mode = 1
@@ -77,3 +80,21 @@ text = "PANTALLA_COMPLETA"
 
 [node name="select_pantalla_completa" type="CheckButton" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=727401114]
 layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=1217058840]
+layout_mode = 2
+
+[node name="volver" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer5" unique_id=2036336922]
+layout_mode = 2
+text = "VOLVER"
+
+[node name="guardar" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer5" unique_id=2119098538]
+layout_mode = 2
+text = "GUARDAR"
+
+[connection signal="item_selected" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/select_idioma" to="." method="_cambiado_idioma"]
+[connection signal="value_changed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer3/vol_musica" to="." method="_cambiada_vol_musica"]
+[connection signal="value_changed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer4/vol_sfx" to="." method="_cambiada_vol_sfx"]
+[connection signal="toggled" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/select_pantalla_completa" to="." method="_cambiada_pantalla_completa"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer5/volver" to="." method="volver"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer5/guardar" to="." method="guardar"]
