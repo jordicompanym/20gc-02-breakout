@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://qsqpileg4lbr"]
+
+[ext_resource type="Script" uid="uid://bytnlacir2upb" path="res://escenas/muro/muro.gd" id="1_phtot"]
+
+[node name="muro" type="Node2D" unique_id=1569649125]
+script = ExtResource("1_phtot")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://sygv1g1cwn4b"]
 
 [ext_resource type="PackedScene" uid="uid://c6ckoj801l5rf" path="res://escenas/botones/nueva_partida.tscn" id="1_ukska"]
+[ext_resource type="Script" uid="uid://dqvkvkh8d6yp" path="res://escenas/pantallas/pantalla_inicial.gd" id="1_vbxqd"]
 [ext_resource type="PackedScene" uid="uid://dpkvr7v6rqtbd" path="res://escenas/botones/opciones.tscn" id="2_vbxqd"]
 [ext_resource type="PackedScene" uid="uid://dvk6e00rl4w4r" path="res://escenas/botones/salir.tscn" id="3_mjf1w"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_vbxqd")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=76236853]
 layout_mode = 1
@@ -46,3 +48,5 @@ layout_mode = 2
 
 [node name="salir" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=63701256 instance=ExtResource("3_mjf1w")]
 layout_mode = 2
+
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/opciones" to="." method="_abrir_opciones"]

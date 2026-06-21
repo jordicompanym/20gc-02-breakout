@@ -1,16 +1,21 @@
 [gd_scene format=3 uid="uid://dkjtcuihoni2v"]
 
 [ext_resource type="PackedScene" uid="uid://ch3o5xbtx2cy" path="res://escenas/botones/reanudar_partida.tscn" id="1_ibjul"]
+[ext_resource type="Script" uid="uid://dgwcej6igpigx" path="res://escenas/pantallas/pantalla_pausa.gd" id="1_jqlhv"]
 [ext_resource type="PackedScene" uid="uid://dpkvr7v6rqtbd" path="res://escenas/botones/opciones.tscn" id="2_jqlhv"]
 [ext_resource type="PackedScene" uid="uid://dvk6e00rl4w4r" path="res://escenas/botones/salir.tscn" id="3_etc5c"]
 
 [node name="pantalla_pausa" type="Control" unique_id=627082341]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_jqlhv")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1693797409]
 layout_mode = 1
@@ -46,3 +51,6 @@ layout_mode = 2
 
 [node name="salir" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=63701256 instance=ExtResource("3_etc5c")]
 layout_mode = 2
+
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/reanudar_partida" to="." method="pausar_juego"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/opciones" to="." method="_abrir_opciones"]

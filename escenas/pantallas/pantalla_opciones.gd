@@ -9,11 +9,13 @@ func _rellenar_controles() -> void:
 	var _vol_musica = Configuracion.cfg_actual.get_value("audio","volumen_musica",100)
 	var _vol_sfx = Configuracion.cfg_actual.get_value("audio","volumen_sfx",100)
 	var _pantalla_completa = Configuracion.cfg_actual.get_value("video","pantalla_completa",false)
+
 	for idioma in Configuracion.lista_idiomas_disponibles():
-		print_debug("Idioma: %s" % idioma)
-		$ColorRect/CenterContainer/VBoxContainer/HBoxContainer/select_idioma.add_item(idioma["nombre"], idioma["id"])
+		var literal := "IDIOMA_%s" % idioma["codigo"].to_upper()
+		$ColorRect/CenterContainer/VBoxContainer/HBoxContainer/select_idioma.add_item(literal, idioma["id"])
 		if idioma["codigo"] == _idioma:			
 			$ColorRect/CenterContainer/VBoxContainer/HBoxContainer/select_idioma.select(idioma["id"])
+
 	$ColorRect/CenterContainer/VBoxContainer/HBoxContainer3/vol_musica.value = _vol_musica
 	$ColorRect/CenterContainer/VBoxContainer/HBoxContainer4/vol_sfx.value = _vol_sfx
 	$ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/select_pantalla_completa.button_pressed = _pantalla_completa
@@ -38,4 +40,10 @@ func guardar() -> void:
 	volver()
 
 func volver() -> void:
-	get_tree().change_scene_to_file("res://escenas/pantallas/pantalla_inicial.tscn")
+	if EstadoJuego.quien_llama_opciones == "pantalla_inicial":
+		get_tree().change_scene_to_file("res://escenas/pantallas/pantalla_inicial.tscn")
+	elif EstadoJuego.quien_llama_opciones == "pantalla_pausa":
+		visible = false
+		get_parent().get_node("pantalla_pausa").visible = true
+
+	

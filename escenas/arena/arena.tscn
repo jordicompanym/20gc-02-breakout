@@ -1,3 +1,42 @@
 [gd_scene format=3 uid="uid://fqlxxnlylhg"]
 
+[ext_resource type="Script" uid="uid://b4osc4yb8nve" path="res://escenas/arena/arena.gd" id="1_hq8gm"]
+[ext_resource type="PackedScene" uid="uid://bythpiijoxi54" path="res://escenas/marcador/marcador.tscn" id="2_3oglw"]
+[ext_resource type="PackedScene" uid="uid://chc7a4r0td2v4" path="res://escenas/bordes/bordes.tscn" id="3_6dlj0"]
+[ext_resource type="PackedScene" uid="uid://df60r5r7ugbq6" path="res://escenas/pala/pala.tscn" id="4_6dlj0"]
+[ext_resource type="PackedScene" uid="uid://qsqpileg4lbr" path="res://escenas/muro/muro.tscn" id="4_qhu2v"]
+[ext_resource type="PackedScene" uid="uid://bykwtjnbtpy7u" path="res://escenas/pelota/pelota.tscn" id="5_oou7c"]
+[ext_resource type="PackedScene" uid="uid://dkjtcuihoni2v" path="res://escenas/pantallas/pantalla_pausa.tscn" id="6_r347v"]
+[ext_resource type="PackedScene" uid="uid://xqpo4msmg8q3" path="res://escenas/pantallas/pantalla_opciones.tscn" id="7_awrpk"]
+
 [node name="arena" type="Node2D" unique_id=1916998095]
+script = ExtResource("1_hq8gm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=27842988]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="marcador" parent="." unique_id=1718577029 instance=ExtResource("2_3oglw")]
+
+[node name="bordes" parent="." unique_id=704456940 instance=ExtResource("3_6dlj0")]
+
+[node name="muro" parent="." unique_id=1569649125 instance=ExtResource("4_qhu2v")]
+
+[node name="pala" parent="." unique_id=1014665021 instance=ExtResource("4_6dlj0")]
+
+[node name="pelota" parent="." unique_id=2133698368 instance=ExtResource("5_oou7c")]
+
+[node name="pantalla_pausa" parent="." unique_id=627082341 instance=ExtResource("6_r347v")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="pantalla_opciones" parent="." unique_id=577618985 instance=ExtResource("7_awrpk")]
+visible = false

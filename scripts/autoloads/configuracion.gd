@@ -21,8 +21,7 @@ func _ready() -> void:
 
 ## Esta funcion devuelve un array de diccionarios con los idiomas disponibles, cada diccionario tiene el id, el codigo y el nombre del idioma
 func lista_idiomas_disponibles() -> Array:
-	var idiomas := TranslationServer.get_loaded_locales()
-	print_debug("Idiomas disponibles: %s" % idiomas)
+	var idiomas := TranslationServer.get_loaded_locales()	
 	var literales : Array
 	var x := 0
 	for idioma in idiomas:

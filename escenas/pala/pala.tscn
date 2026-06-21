@@ -1,3 +1,18 @@
 [gd_scene format=3 uid="uid://df60r5r7ugbq6"]
 
+[ext_resource type="Script" uid="uid://dto233lr5q3wq" path="res://escenas/pala/pala.gd" id="1_pf0v8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmtxr"]
+size = Vector2(150, 20)
+
 [node name="pala" type="CharacterBody2D" unique_id=1014665021]
+motion_mode = 1
+script = ExtResource("1_pf0v8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1857257111]
+offset_right = 150.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=874615388]
+position = Vector2(75, 10)
+shape = SubResource("RectangleShape2D_jmtxr")

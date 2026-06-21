@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://chc7a4r0td2v4"]
+
+[ext_resource type="Script" uid="uid://bb1uhox4tw2mk" path="res://escenas/bordes/bordes.gd" id="1_jmtxr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jmtxr"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61eq5"]
+size = Vector2(22, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e67h5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_577pg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmtxr"]
+
+[node name="bordes" type="StaticBody2D" unique_id=704456940]
+physics_material_override = SubResource("PhysicsMaterial_jmtxr")
+script = ExtResource("1_jmtxr")
+
+[node name="limite_superior" type="CollisionShape2D" parent="." unique_id=1839327396]
+shape = SubResource("RectangleShape2D_61eq5")
+
+[node name="limite_izquierdo" type="CollisionShape2D" parent="." unique_id=1416267334]
+shape = SubResource("RectangleShape2D_e67h5")
+
+[node name="limite_derecho" type="CollisionShape2D" parent="." unique_id=609690235]
+shape = SubResource("RectangleShape2D_577pg")
+
+[node name="zona_muerte" type="Area2D" parent="." unique_id=1745176136]
+
+[node name="limite_inferior" type="CollisionShape2D" parent="zona_muerte" unique_id=889513978]
+shape = SubResource("RectangleShape2D_jmtxr")
+
+[connection signal="body_entered" from="zona_muerte" to="." method="_on_zona_muerte_body_entered"]

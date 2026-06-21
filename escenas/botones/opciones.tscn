@@ -1,11 +1,6 @@
 [gd_scene format=3 uid="uid://dpkvr7v6rqtbd"]
 
-[ext_resource type="Script" uid="uid://cym60csjd5ug0" path="res://escenas/botones/opciones.gd" id="1_8mk2i"]
-
 [node name="opciones" type="Button" unique_id=1751182535]
 offset_right = 89.0
 offset_bottom = 31.0
 text = "OPCIONES"
-script = ExtResource("1_8mk2i")
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

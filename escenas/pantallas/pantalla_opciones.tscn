@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://2i0jm1eiymhc" path="res://escenas/pantallas/pantalla_opciones.gd" id="1_m6gaf"]
 
 [node name="pantalla_opciones" type="Control" unique_id=577618985]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

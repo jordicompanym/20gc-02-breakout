@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://j6ry2wwlhhe"]
+
+[ext_resource type="Script" uid="uid://cf1qp8nm0f0bo" path="res://escenas/muro/ladrillo.gd" id="1_qha3d"]
+
+[node name="ladrillo" type="Polygon2D" unique_id=2006804626]
+scale = Vector2(1.3333334, 2)
+polygon = PackedVector2Array(0, 0, 21, 0, 41.25, 0, 41.25, 16, 20.25, 16, 0, 16)
+script = ExtResource("1_qha3d")
