@@ -1,10 +1,15 @@
 extends Node
 
+signal cambio_estado(nuevo: Estado)
+
+enum Estado { ACTIVO, PARADO, FINJUEGO }  # fácil de extender a GAME_OVER, etc.
+
 var puntuacion : int = 0
 var vidas : int = 5
 var bufos : String = "Ninguno"
 var debufos : String = "Ninguno"
 var quien_llama_opciones : String
+var estado : Estado = Estado.PARADO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,10 +18,13 @@ func _ready() -> void:
 ###########################################################
 ## Funciones públicas para la gestión principal del juego #
 ###########################################################
+func cambiar_estado(nuevo_estado : Estado) -> void:
+	estado = nuevo_estado
+	emit_signal("cambio_estado", estado)
+
 func nueva_partida() -> void:
 	### reiniciar puntuacion y vidas
-	puntuacion = 0
-	vidas = 5
+	reiniciar_marcador()
 	## cambiar a la escena de juego
 	get_tree().change_scene_to_file("res://escenas/arena/arena.tscn")
 
@@ -38,11 +46,22 @@ func cerrar_opciones() -> void:
 	if quien_llama_opciones == "pantalla_inicial":
 		get_tree().change_scene_to_file("res://escenas/pantallas/pantalla_inicial.tscn")
 
-# gestion del marcador
+###########################################################
+## Funciones de gestión del marcador                      #
+###########################################################
+func reiniciar_marcador() -> void:
+	puntuacion = 0
+	vidas = 5
+	bufos = "Ninguno"
+	debufos = "Ninguno"
+	
 func aumentar_puntuacion(puntos : int) -> void:
 	puntuacion += puntos
 
 func perder_vida() -> void:
 	vidas -= 1
-	if vidas <= 0:
-		get_tree().change_scene_to_file("res://escenas/pantallas/gameover.tscn")
+	cambiar_estado(EstadoJuego.Estado.PARADO)
+	if vidas < 4:
+		cambiar_estado(EstadoJuego.Estado.FINJUEGO)
+		await get_tree().create_timer(0.5).timeout
+		get_tree().change_scene_to_file("res://escenas/pantallas/pantalla_inicial.tscn")

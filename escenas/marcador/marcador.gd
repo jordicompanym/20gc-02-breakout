@@ -1,5 +1,11 @@
 extends CanvasLayer
 
+func _ready() -> void:
+	EstadoJuego.cambio_estado.connect(_on_cambio_estado)
+
+func _on_cambio_estado(_nuevo_estado : EstadoJuego.Estado) -> void:
+	_actualizar_marcador()
+
 func posicion_inicial(screen_size : Vector2) -> void:
 	var ancho : float = $Control.size.x / 4
 	# marcador ocupa todo la zona superior
@@ -18,9 +24,9 @@ func posicion_inicial(screen_size : Vector2) -> void:
 	$Control/etiqueta_puntos.size.x = ancho
 	$Control/etiqueta_puntos.position.x = ancho * 3
 	# actualizar todos los marcadores
-	actualizar_marcador()
+	_actualizar_marcador()
 
-func actualizar_marcador() -> void:
+func _actualizar_marcador() -> void:
 	$Control/etiqueta_vidas.text = str(EstadoJuego.vidas)
 	$Control/etiqueta_bufos.text = str(EstadoJuego.bufos)
 	$Control/etiqueta_debufos.text = str(EstadoJuego.debufos)

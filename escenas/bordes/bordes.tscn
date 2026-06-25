@@ -29,8 +29,7 @@ shape = SubResource("RectangleShape2D_e67h5")
 shape = SubResource("RectangleShape2D_577pg")
 
 [node name="zona_muerte" type="Area2D" parent="." unique_id=1745176136]
+collision_mask = 2
 
 [node name="limite_inferior" type="CollisionShape2D" parent="zona_muerte" unique_id=889513978]
 shape = SubResource("RectangleShape2D_jmtxr")
-
-[connection signal="body_entered" from="zona_muerte" to="." method="_on_zona_muerte_body_entered"]

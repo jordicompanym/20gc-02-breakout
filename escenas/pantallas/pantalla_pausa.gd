@@ -4,8 +4,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		pausar_juego()
 
-func pausar_juego() -> void:
-	print_debug("pausar_juego")
+func pausar_juego() -> void:	
 	EstadoJuego._pausar_reanudar_partida()
 	visible = get_tree().paused
 
