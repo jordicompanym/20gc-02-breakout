@@ -67,6 +67,8 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 		var cuerpo = state.get_contact_collider_object(i)
 		if cuerpo.is_in_group("pala"):
 			_rebote_con_pala(state, cuerpo, i)
+		if cuerpo.is_in_group("ladrillos"):
+			cuerpo.recibir_golpe()
 	
 	if EstadoJuego.estado == EstadoJuego.Estado.PARADO || EstadoJuego.estado == EstadoJuego.Estado.FINJUEGO:
 		state.linear_velocity = Vector2.ZERO

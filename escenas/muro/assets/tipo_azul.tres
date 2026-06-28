@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TipoLadrillo" format=3 uid="uid://fsrly5yxtnr7"]
+
+[ext_resource type="Script" uid="uid://bdq8v11x1kxq5" path="res://escenas/muro/tipo_ladrillo.gd" id="1_p812n"]
+[ext_resource type="Texture2D" uid="uid://dj70bm36yjhuc" path="res://escenas/muro/assets/ladrillo_amarillo.tres" id="2_akcec"]
+[ext_resource type="Texture2D" uid="uid://umb67xeu5vcw" path="res://escenas/muro/assets/ladrillo_amarillo_roto.tres" id="3_xtljt"]
+
+[resource]
+script = ExtResource("1_p812n")
+texturas = Array[Texture2D]([ExtResource("2_akcec"), ExtResource("3_xtljt")])
+metadata/_custom_type_script = "uid://bdq8v11x1kxq5"

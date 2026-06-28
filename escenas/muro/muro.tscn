@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://qsqpileg4lbr"]
 
 [ext_resource type="Script" uid="uid://bytnlacir2upb" path="res://escenas/muro/muro.gd" id="1_phtot"]
+[ext_resource type="PackedScene" uid="uid://j6ry2wwlhhe" path="res://escenas/muro/ladrillo.tscn" id="2_6t2wb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tf4du"]
 
 [node name="muro" type="Node2D" unique_id=1569649125]
+position = Vector2(24, 27)
 script = ExtResource("1_phtot")
+ladrillo_scene = ExtResource("2_6t2wb")
+
+[node name="zona_deteccion" type="Area2D" parent="." unique_id=405057251]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="zona_deteccion" unique_id=987153136]
+shape = SubResource("RectangleShape2D_tf4du")

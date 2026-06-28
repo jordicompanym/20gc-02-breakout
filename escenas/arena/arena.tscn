@@ -25,11 +25,9 @@ color = Color(0, 0, 0, 1)
 [node name="bordes" parent="." unique_id=704456940 instance=ExtResource("3_6dlj0")]
 
 [node name="muro" parent="." unique_id=1569649125 instance=ExtResource("4_qhu2v")]
+position = Vector2(139, 91)
 
 [node name="pala" parent="." unique_id=1014665021 instance=ExtResource("4_6dlj0")]
-tecla_izquierda = "ui_left"
-tecla_derecha = "ui_right"
-velocidad = 600.0
 
 [node name="pelota" parent="." unique_id=2133698368 instance=ExtResource("5_oou7c")]
 

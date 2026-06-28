@@ -6,7 +6,7 @@ var screen_size : Vector2
 
 @export var tecla_izquierda: String = "ui_left"
 @export var tecla_derecha: String = "ui_right"
-@export var velocidad: float = 600
+@export var velocidad: float = 900
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -19,7 +19,7 @@ func _on_cambio_estado(_nuevo_estado : EstadoJuego.Estado) -> void:
 
 ## posisonando la pala en la parte inferior de la pantalla
 func posicion_inicial() -> void:
-	position = Vector2((screen_size.x / 2) - ($ColorRect.size.x / 2), screen_size.y - 60)
+	position = Vector2((screen_size.x / 2) - ($ColorRect.size.x / 2), screen_size.y - 30)
 
 func centro_pala() -> Vector2:
 	return global_position + $ColorRect.size / 2.0

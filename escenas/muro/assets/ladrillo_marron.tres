@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://5fcq5s5315jm"]
+
+[ext_resource type="Texture2D" uid="uid://11t3fq4yui7e" path="res://escenas/assets/Breakout_Tile_Free.png" id="1_53e0d"]
+
+[resource]
+atlas = ExtResource("1_53e0d")
+region = Rect2(386, 780, 384, 128)

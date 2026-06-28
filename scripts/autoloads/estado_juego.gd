@@ -61,7 +61,12 @@ func aumentar_puntuacion(puntos : int) -> void:
 func perder_vida() -> void:
 	vidas -= 1
 	cambiar_estado(EstadoJuego.Estado.PARADO)
-	if vidas < 4:
+	if vidas < 1:
 		cambiar_estado(EstadoJuego.Estado.FINJUEGO)
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.2).timeout
 		get_tree().change_scene_to_file("res://escenas/pantallas/pantalla_inicial.tscn")
+		
+func partida_ganada() -> void:
+	cambiar_estado(EstadoJuego.Estado.FINJUEGO)
+	await get_tree().create_timer(0.2).timeout
+	get_tree().change_scene_to_file("res://escenas/pantallas/pantalla_inicial.tscn")
