@@ -1,13 +1,13 @@
 extends Node
 
 signal cambio_estado(nuevo: Estado)
-
+signal actualizada_puntuacion()
 enum Estado { ACTIVO, PARADO, FINJUEGO }  # fácil de extender a GAME_OVER, etc.
 
 var puntuacion : int = 0
 var vidas : int = 5
-var bufos : String = "Ninguno"
-var debufos : String = "Ninguno"
+var bufos : String = ""
+var debufos : String = ""
 var quien_llama_opciones : String
 var estado : Estado = Estado.PARADO
 
@@ -52,11 +52,12 @@ func cerrar_opciones() -> void:
 func reiniciar_marcador() -> void:
 	puntuacion = 0
 	vidas = 5
-	bufos = "Ninguno"
-	debufos = "Ninguno"
+	bufos = ""
+	debufos = ""
 	
 func aumentar_puntuacion(puntos : int) -> void:
 	puntuacion += puntos
+	emit_signal("actualizada_puntuacion")
 
 func perder_vida() -> void:
 	vidas -= 1

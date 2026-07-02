@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://cjw2o2dpyv5kf"
+path="res://.godot/imported/anuvverbubbla_8x8.fnt-4cf7eb0d9a7ca8f9274d2054499a415b.fontdata"
+
+[deps]
+
+source_file="res://escenas/marcador/assets/anuvverbubbla_8x8.fnt"
+dest_files=["res://.godot/imported/anuvverbubbla_8x8.fnt-4cf7eb0d9a7ca8f9274d2054499a415b.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

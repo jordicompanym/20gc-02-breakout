@@ -17,12 +17,13 @@ func _posicionamiento_inicial() -> void:
 	# posicionamiento de los nodos en pantalla
 	$ColorRect.size = _screen_size
 	$marcador.posicion_inicial(_screen_size)
-	$bordes.posicion_inicial(_screen_size, $marcador/Control.size.y)
-	$muro.posicion_inicial(_screen_size, $marcador/Control.size.y)	
+	$bordes.posicion_inicial(_screen_size, $marcador/control.size.y)
+	$muro.posicion_inicial(_screen_size, $marcador/control.size.y)	
 	$pala.posicion_inicial()
 	$pelota.posicion_inicial($pala.position, $pala/ColorRect.size)
 	$pantalla_pausa.position = Vector2(_screen_size.x/2, _screen_size.y/2)
 	$pantalla_opciones.position = Vector2(_screen_size.x/2, _screen_size.y/2)
 
 func _muerte(_body: Node) -> void:
+	$marcador.actualizar_vidas(EstadoJuego.vidas)
 	EstadoJuego.perder_vida()

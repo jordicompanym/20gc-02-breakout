@@ -1,40 +1,96 @@
 [gd_scene format=3 uid="uid://bythpiijoxi54"]
 
 [ext_resource type="Script" uid="uid://nvn1b0y2l78v" path="res://escenas/marcador/marcador.gd" id="1_wu0d3"]
+[ext_resource type="FontFile" uid="uid://cjw2o2dpyv5kf" path="res://escenas/marcador/assets/anuvverbubbla_8x8.fnt" id="2_cuug3"]
+[ext_resource type="Texture2D" uid="uid://dh5b3g0obiky2" path="res://escenas/marcador/assets/corazon.tres" id="2_ll0sm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7he6k"]
+font = ExtResource("2_cuug3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cuug3"]
+font = ExtResource("2_cuug3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_opf3m"]
+font = ExtResource("2_cuug3")
+font_size = 20
 
 [node name="marcador" type="CanvasLayer" unique_id=1718577029]
 script = ExtResource("1_wu0d3")
 
-[node name="Control" type="Control" parent="." unique_id=1528072011]
+[node name="control" type="Control" parent="." unique_id=1528072011]
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 30.0
 grow_horizontal = 2
 
-[node name="etiqueta_vidas" type="Label" parent="Control" unique_id=1706431714]
+[node name="etiqueta_vidas" type="HBoxContainer" parent="control" unique_id=74460004]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-horizontal_alignment = 1
+offset_right = 346.0
+offset_bottom = 32.0
 
-[node name="etiqueta_bufos" type="Label" parent="Control" unique_id=1027899933]
+[node name="vida1" type="TextureRect" parent="control/etiqueta_vidas" unique_id=461931813]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ll0sm")
+expand_mode = 1
+
+[node name="vida2" type="TextureRect" parent="control/etiqueta_vidas" unique_id=522979996]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ll0sm")
+expand_mode = 1
+
+[node name="vida3" type="TextureRect" parent="control/etiqueta_vidas" unique_id=449821134]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ll0sm")
+expand_mode = 1
+
+[node name="vida4" type="TextureRect" parent="control/etiqueta_vidas" unique_id=635988012]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ll0sm")
+expand_mode = 1
+
+[node name="vida5" type="TextureRect" parent="control/etiqueta_vidas" unique_id=1867253751]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ll0sm")
+expand_mode = 1
+
+[node name="etiqueta_bufos" type="Label" parent="control" unique_id=1027899933]
 layout_mode = 0
 offset_left = 432.0
 offset_right = 472.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_7he6k")
 horizontal_alignment = 1
 
-[node name="etiqueta_debufos" type="Label" parent="Control" unique_id=1937000568]
+[node name="etiqueta_debufos" type="Label" parent="control" unique_id=1937000568]
 layout_mode = 0
 offset_left = 776.0
 offset_right = 816.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_cuug3")
 horizontal_alignment = 1
 
-[node name="etiqueta_puntos" type="Label" parent="Control" unique_id=1502587320]
+[node name="etiqueta_puntos" type="Label" parent="control" unique_id=1502587320]
 layout_mode = 0
-offset_left = 1092.0
+offset_left = 994.0
 offset_right = 1132.0
-offset_bottom = 23.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 17
+label_settings = SubResource("LabelSettings_opf3m")
 horizontal_alignment = 1
+vertical_alignment = 1

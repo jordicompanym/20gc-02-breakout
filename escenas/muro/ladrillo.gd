@@ -21,7 +21,9 @@ func configurar(p_tipo: TipoLadrillo, dimensiones : Vector2) -> void:
 
 func recibir_golpe() -> void:      
 	golpes_restantes -= 1
+	EstadoJuego.aumentar_puntuacion(100)
 	if golpes_restantes <= 0:
+		EstadoJuego.aumentar_puntuacion(100)
 		destruido.emit(global_position, extra)
 		queue_free()
 	else:

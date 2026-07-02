@@ -37,16 +37,21 @@ func empezar_partida() -> void:
 func _control_muro() -> void:
 	_nivel_actual += 1
 	if _nivel_actual < _niveles.size():
+		await get_tree().create_timer(0.2).timeout
 		_generar_nivel(_niveles[_nivel_actual])
 	else: # señal de partida ganada hacia arena/estado_juego
 		EstadoJuego.partida_ganada()
 
 func _generar_nivel(nivel: Nivel) -> void:
 	_ladrillos_restantes = nivel.tipos.size() * nivel.n_columnas
-	_columnas = nivel.n_columnas	
+	_columnas = nivel.n_columnas
 	# asigna extra desde nivel.extras.get(Vector2i(fila, col), "")
 	var ancho_ladrillo := _ancho / _columnas
-	var alto_ladrillo  := _alto  / nivel.tipos.size()
+	# _alto / nivel.tipos.size()
+	# de momento fijo el alto para que en los niveles mas bajos con pocos tipos hay mas espacio entre 
+	# el primer ladrillo y la bola
+	var alto_ladrillo := 30 
+	print_debug("alto_ladrillo: ", alto_ladrillo, " ancho_ladrillo: ", ancho_ladrillo)
 	var dimensiones := Vector2(ancho_ladrillo, alto_ladrillo)
 
 	for fila in nivel.tipos.size():
@@ -65,11 +70,20 @@ func _on_ladrillo_destruido(global_position : Vector2, extra : String) -> void:
 
 func _cargar_array_niveles() -> void:
 	var n1 := Nivel.new()
-	n1.tipos = [ "tipo_amarillo", "tipo_azul"]
-	n1.n_columnas = 2
+	n1.tipos = ["tipo_amarillo", "tipo_azul", "tipo_azul_flojo"]
+	n1.n_columnas = 6
 	n1.extras = {
 		Vector2i(0, 1): "bola_explota",
 		Vector2i(1, 3): "pala_grande",
 		Vector2i(2, 5): "pistola",
 	}
 	_niveles.append(n1)
+	var n2 := Nivel.new()
+	n2.tipos = ["tipo_amarillo", "tipo_azul", "tipo_azul_flojo", "tipo_gris"]
+	n2.n_columnas = 6
+	n2.extras = {
+		Vector2i(0, 1): "bola_explota",
+		Vector2i(1, 3): "pala_grande",
+		Vector2i(2, 5): "pistola",
+	}
+	_niveles.append(n2)
