@@ -1,0 +1,16 @@
+[
+	{
+		"tipos": ["tipo_amarillo", "tipo_azul"],
+		"n_columnas": 3,
+		"extras": {
+		}
+	},
+	{
+		"tipos": ["tipo_amarillo", "tipo_azul"],
+		"n_columnas": 5,
+		"extras": {
+			"Vector2i(0, 1)": "pistola",
+			"Vector2i(1, 3)": "pala_grande"
+		}
+	}
+]

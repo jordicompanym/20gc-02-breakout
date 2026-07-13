@@ -21,7 +21,7 @@ func _ready() -> void:
 
 ## Esta funcion devuelve un array de diccionarios con los idiomas disponibles, cada diccionario tiene el id, el codigo y el nombre del idioma
 func lista_idiomas_disponibles() -> Array:
-	var idiomas := TranslationServer.get_loaded_locales()	
+	var idiomas := TranslationServer.get_loaded_locales()
 	var literales : Array
 	var x := 0
 	for idioma in idiomas:
@@ -59,7 +59,7 @@ func guardar_nueva_cfg() -> void:
 ## Funciones privadas para la gestión de la configuración #
 ###########################################################
 
-## Funcion para generar la cfg por defecto	
+## Funcion para generar la cfg por defecto
 func _generar_cfg_defecto() -> void:
 	cfg_actual.load("res://configuraciones/configuracion.cfg")
 	cfg_actual.save(RUTA_CONFIG)

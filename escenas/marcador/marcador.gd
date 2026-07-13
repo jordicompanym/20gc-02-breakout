@@ -1,15 +1,5 @@
 extends CanvasLayer
 
-func _ready() -> void:
-	EstadoJuego.cambio_estado.connect(_on_cambio_estado)
-	EstadoJuego.actualizada_puntuacion.connect(_on_actualizada_puntuacion)
-
-func _on_cambio_estado(_nuevo_estado : EstadoJuego.Estado) -> void:
-	_actualizar_marcador()
-
-func _on_actualizada_puntuacion() -> void:
-	_actualizar_marcador()
-
 func posicion_inicial(screen_size : Vector2) -> void:
 	var ancho : float = $control.size.x / 4
 	# marcador ocupa todo la zona superior
@@ -28,7 +18,7 @@ func posicion_inicial(screen_size : Vector2) -> void:
 	$control/etiqueta_puntos.size.x = ancho
 	$control/etiqueta_puntos.position.x = ancho * 3
 	# actualizar todos los marcadores
-	_actualizar_marcador()
+	actualizar_marcador()
 
 func actualizar_vidas(vida: int) -> void:
 	for i in $control/etiqueta_vidas.get_child_count():
@@ -36,8 +26,8 @@ func actualizar_vidas(vida: int) -> void:
 			var corazon = $control/etiqueta_vidas.get_child(i)
 			corazon.modulate = Color(0.3, 0.3, 0.3)
 
-func _actualizar_marcador() -> void:
-	$control/etiqueta_bufos.text = str(EstadoJuego.bufos)
-	$control/etiqueta_debufos.text = str(EstadoJuego.debufos)
-	$control/etiqueta_puntos.text = str(EstadoJuego.puntuacion)
+func actualizar_marcador() -> void:
+	$control/etiqueta_bufos.text = str($"../..".bufos)
+	$control/etiqueta_debufos.text = str($"../..".debufos)
+	$control/etiqueta_puntos.text = str($"../..".puntuacion)
 	

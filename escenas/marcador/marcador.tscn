@@ -21,7 +21,6 @@ script = ExtResource("1_wu0d3")
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 30.0
 grow_horizontal = 2
 
 [node name="etiqueta_vidas" type="HBoxContainer" parent="control" unique_id=74460004]

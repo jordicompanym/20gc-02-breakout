@@ -11,14 +11,21 @@ config_version=5
 [application]
 
 config/name="20gc 02 Break Out"
-run/main_scene="uid://sygv1g1cwn4b"
+run/main_scene="uid://fqlxxnlylhg"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Configuracion="*uid://cc3o28yy7ej7q"
-EstadoJuego="*uid://cd1cynyavjgnt"
+
+[gdscript_ast]
+
+scan/include=PackedStringArray("res://")
+scan/exclude=PackedStringArray()
+scan/enabled=true
+scan/scenes=true
+scan/resources=true
 
 [internationalization]
 

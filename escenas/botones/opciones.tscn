@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dpkvr7v6rqtbd"]
-
-[node name="opciones" type="Button" unique_id=1751182535]
-offset_right = 89.0
-offset_bottom = 31.0
-text = "OPCIONES"

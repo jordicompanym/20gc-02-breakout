@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bytnlacir2upb" path="res://escenas/muro/muro.gd" id="1_phtot"]
 [ext_resource type="PackedScene" uid="uid://j6ry2wwlhhe" path="res://escenas/muro/ladrillo.tscn" id="2_6t2wb"]
+[ext_resource type="AudioStream" uid="uid://bhf22j73x5i0y" path="res://escenas/muro/sfx/8bit-explode5.wav" id="3_cc7tl"]
+[ext_resource type="AudioStream" uid="uid://choiqqd33wvxw" path="res://escenas/muro/sfx/8bit-explode17.wav" id="4_oigav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tf4du"]
 
@@ -14,3 +16,9 @@ ladrillo_scene = ExtResource("2_6t2wb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="zona_deteccion" unique_id=987153136]
 shape = SubResource("RectangleShape2D_tf4du")
+
+[node name="muro_roto" type="AudioStreamPlayer" parent="." unique_id=2040321210]
+stream = ExtResource("3_cc7tl")
+
+[node name="ladrillo_roto" type="AudioStreamPlayer" parent="." unique_id=2106578580]
+stream = ExtResource("4_oigav")

@@ -1,11 +1,13 @@
 extends RigidBody2D
 
+signal saque_realizado
+
 const ANGULO_MAX := deg_to_rad(50.0)   # ángulo máximo de salida respecto a la horizontal
 const PESO_PALA := 0.5                # cuánto influye la velocidad de la pala (0 = nada, 1 = mucho)
 
 var _posicion_pala : Vector2
 var _dimension_pala : Vector2
-var dimensiones_textura : Vector2
+var _dimensiones_textura : Vector2
 var _posicion_inicial_pelota : Vector2
 
 @export var speed: float = 600
@@ -15,17 +17,17 @@ func _ready() -> void:
 	contact_monitor = true       # habilita el reporte de contactos
 	max_contacts_reported = 4    # cuántos contactos como máximo se reportan (0 por defecto, por eso "no hay nada")
 	freeze = true
-	dimensiones_textura = $Sprite2D.texture.get_size() * $Sprite2D.scale
+	_dimensiones_textura = $Sprite2D.texture.get_size() * $Sprite2D.scale
 	$Sprite2D.centered = true
 
-func _get_posicion_inicial_pelota() -> Vector2:
-	return Vector2(_posicion_pala.x + _dimension_pala.x / 2, (_posicion_pala.y - dimensiones_textura.y / 2) - 1)
+#func _get_posicion_inicial_pelota() -> Vector2:
+	#return Vector2(_posicion_pala.x + _dimension_pala.x / 2, (_posicion_pala.y - _dimensiones_textura.y / 2) - 1)
 
 func posicion_inicial(posicion_pala : Vector2, dimension_pala : Vector2) -> void:
 	# posicionando la pelota en el centro de la pantalla
 	_posicion_pala = posicion_pala
 	_dimension_pala = dimension_pala
-	position = Vector2(_posicion_pala.x + _dimension_pala.x / 2, (_posicion_pala.y - dimensiones_textura.y / 2) - 1)
+	position = Vector2(_posicion_pala.x + _dimension_pala.x / 2, (_posicion_pala.y - _dimensiones_textura.y / 2) - 1)
 	_posicion_inicial_pelota = position
 
 func saque(screen_size : Vector2) -> void:
@@ -35,13 +37,13 @@ func saque(screen_size : Vector2) -> void:
 		freeze = false
 		var direccion = (Vector2(random_x, screen_size.y / 2) - global_position).normalized()
 		linear_velocity = direccion * speed
-		EstadoJuego.cambiar_estado(EstadoJuego.Estado.ACTIVO)
+		saque_realizado.emit()
 
 # Funcion de control del rebote con la pala
 func _rebote_con_pala(state: PhysicsDirectBodyState2D, pala: CharacterBody2D, contacto: int) -> void:
 	var centro_bola: Vector2 = state.transform.origin
 	var centro_pala: Vector2 = pala.centro_pala()
-	var mitad_ancho: float = pala.get_node("ColorRect").size.x / 2.0
+	var mitad_ancho: float = pala.get_node("Sprite2D").texture.get_size().x / 2.0
 
 	# 1. ¿dónde golpeó la pelota dentro del ancho de la pala? -1 borde izq, 0 centro, 1 borde dcho
 	var offset_posicion: float = clampf((centro_bola.x - centro_pala.x) / mitad_ancho, -1.0, 1.0)
@@ -64,13 +66,14 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 	# buscar los rebotes con la pala, si los hay, lanzar función de control del rebote con la pala
 	for i in state.get_contact_count():
+		$rebote.play()
 		var cuerpo = state.get_contact_collider_object(i)
 		if cuerpo.is_in_group("pala"):
 			_rebote_con_pala(state, cuerpo, i)
 		if cuerpo.is_in_group("ladrillos"):
 			cuerpo.recibir_golpe()
 	
-	if EstadoJuego.estado == EstadoJuego.Estado.PARADO || EstadoJuego.estado == EstadoJuego.Estado.FINJUEGO:
+	if $"../..".estado == $"../..".Estados.PARADO || $"../..".estado == $"../..".Estados.PERDIDAVIDA || $"../..".estado == $"../..".Estados.FINJUEGO:
 		state.linear_velocity = Vector2.ZERO
 		state.angular_velocity = 0
 		state.transform.origin = _posicion_inicial_pelota

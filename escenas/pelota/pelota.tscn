@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxogrv5vej5x8" path="res://escenas/pelota/pelota.gd" id="1_wvm6p"]
 [ext_resource type="Texture2D" uid="uid://300eisl5x7xn" path="res://escenas/pelota/assets/58-Breakout-Tiles.png" id="2_r8t0a"]
+[ext_resource type="AudioStream" uid="uid://pydn4gmkx8nd" path="res://escenas/pelota/sfx/Bleep_04.wav" id="3_a8f7t"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wvm6p"]
 friction = 0.0
@@ -24,4 +25,5 @@ texture = ExtResource("2_r8t0a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154612554]
 shape = SubResource("CircleShape2D_tf4du")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2143392272]
+[node name="rebote" type="AudioStreamPlayer" parent="." unique_id=443742643]
+stream = ExtResource("3_a8f7t")
