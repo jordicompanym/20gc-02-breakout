@@ -27,6 +27,10 @@ scan/enabled=true
 scan/scenes=true
 scan/resources=true
 
+[global]
+
+Master=false
+
 [internationalization]
 
 locale/translations=PackedStringArray("res://idiomas/traducciones.en.translation", "res://idiomas/traducciones.es.translation")

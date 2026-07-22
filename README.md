@@ -1,192 +1,105 @@
-# Scene Dependency Viewer
+# Breakout
 
-**Visualize project dependencies, find broken references, and detect unused assets in Godot 4.x.**
+*[English version](README.en.md)*
 
-A lightweight editor addon that scans your project files and shows you exactly what depends on what — before something breaks.
+Mi versión del clásico Breakout, hecha en Godot 4.6 como **juego 2** del [20 Games Challenge](https://20_games_challenge.gitlab.io/).
 
----
+![Captura del juego](captura_breakout.png)
 
-## Why This Exists
+## Breakout original
 
-You delete a texture. Three scenes break. You don't find out until runtime.
+Breakout es uno de los clásicos de la era dorada del arcade. Creado por Atari en 1976, nació de una idea de Nolan Bushnell y Steve Bristow, y fue diseñado —en cuatro noches— por Steve Wozniak y Steve Jobs, antes de que Apple fuera Apple. El concepto es simple: una pala, una pelota y un muro de ladrillos que destruir. Pero esa simplicidad esconde una profundidad táctica real: el ángulo de rebote, la gestión de las vidas y la presión de ir rompiendo el muro ladrillo a ladrillo lo convierten en uno de los juegos más adictivos de su época.
 
-Scene Dependency Viewer scans your entire project and shows you:
-- **What a file depends on** — see all external references in any scene, resource, or script
-- **What depends on a file** — before you move or delete anything, know what will break
-- **Broken references** — find missing files instantly
-- **Unused assets** — clean up files nothing actually uses
+## Por qué he hecho este juego
 
----
+Este proyecto es la segunda entrega del [20 Games Challenge](https://20_games_challenge.gitlab.io/). Breakout es el salto natural desde Pong: comparte la mecánica de rebote de pelota con pala, pero añade gestión de niveles, distintos tipos de ladrillos, sistema de vidas con corazones y una arquitectura de juego más compleja. El objetivo era asentar lo aprendido con Pong y dar un paso más en la organización de proyectos en Godot.
 
-## 60-Second Quickstart
+## Qué he aprendido con este juego
 
-1. Copy `addons/scene_dependency_viewer/` into your project.
-2. Open **Project → Project Settings → Plugins** and enable **Scene Dependency Viewer**.
-3. A new **Dependencies** tab appears at the bottom of the editor.
-4. Click **Scan Project**. Your entire dependency tree appears.
+A nivel de conceptos:
 
-That's it.
+- Arquitectura de escena única: una raíz permanente con paneles show/hide en lugar de cambiar de escena con `change_scene_to_file`.
+- Generación procedural de niveles por código a partir de datos en JSON.
+- Control de física manual en `RigidBody2D` mediante `_integrate_forces`: cálculo del ángulo de rebote según la posición de impacto en la pala y su inercia.
+- Sistema de buses de audio (Master → Música / SFX) para controlar el volumen de música y efectos de forma independiente.
+- Fuentes bitmap en Godot 4: creación y uso de `BitmapFont` con archivo `.fnt` generado a partir de un PNG.
+- `CanvasLayer` como HUD: no hereda la visibilidad del nodo padre, hay que gestionarla explícitamente.
+- `TextureRect` con `expand_mode` e `stretch_mode` para mostrar imágenes ajustadas dentro de contenedores UI.
+- Guardado de configuración entre sesiones con `ConfigFile`.
+- Cambio de modo pantalla completa / ventana mediante `DisplayServer`.
 
----
+Nodos utilizados:
 
-## Features
+- `Node2D`
+- `Control`
+- `ColorRect`
+- `CanvasLayer`
+- `CharacterBody2D`
+- `RigidBody2D`
+- `Sprite2D`
+- `TextureRect`
+- `StaticBody2D`
+- `Area2D`
+- `CollisionShape2D`
+- `AudioStreamPlayer`
+- `Label`
+- `Button`
+- `HSlider`
+- `CheckButton`
+- `HBoxContainer` / `VBoxContainer` / `CenterContainer`
 
-### Dependency Tree
-- Browse all project files grouped by type (scenes, scripts, textures, audio, models)
-- Search and filter to find specific files fast
-- See dependency count per file at a glance
+## Controles
 
-### Reverse Dependencies
-- Click any file to see what depends on it
-- Know exactly what breaks if you move or delete a file
-- Never guess whether a resource is safe to remove
+| Acción | Tecla |
+| --- | --- |
+| Mover pala a la izquierda | `←` |
+| Mover pala a la derecha | `→` |
+| Pausar / Menú | `Escape` |
 
-### Broken Reference Detection
-- Instantly find files referencing missing resources
-- See exactly which file has the broken reference and what it's looking for
-- Fix issues before they cause runtime errors
+## Créditos
 
-### Unused Asset Detection
-- Find files that nothing in your project actually references
-- Clean up bloat and reduce project size
-- Safely remove dead assets
+Los efectos de sonido y assets gráficos usados en este proyecto no son propios. Gracias a sus autores:
 
-### Supported File Types
-- **Scenes** (`.tscn`) — all ext_resource and sub_resource references
-- **Resources** (`.tres`) — embedded references
-- **Scripts** (`.gd`, `.cs`) — `load()`, `preload()`, and `class_name` references
-- **Import files** (`.import`) — source file tracking
-- **Config files** (`.cfg`) — `res://` references
-- **Textures, Audio, Models, Fonts** — tracked as leaf dependencies
+**Efecto de rebote** (pala y paredes)
+- Archivo: `Bleep_04.wav`
+- Pack: *Interface Bleeps Wav*
+- Autor: [bleeoop](https://bleeoop.itch.io/interface-bleeps)
 
----
+**Efectos de impacto y rotura de ladrillo**
+- Archivos: `8bit-explode17.wav`, `8bit-explode5.wav`
+- Autor: [Juhani Junkala](https://juhanijunkala.com/) vía [OpenGameArt](https://opengameart.org/content/512-sound-effects-8-bit-style)
 
-## API Reference
+**Efecto de vida perdida**
+- Archivo: `JDSherbert - Pixel Game Essentials SFX Pack - Die 1.wav`
+- Pack: *Pixel Game Essentials SFX Pack*
+- Autor: JDSherbert
 
-### DependencyScanner
+**Efecto de nivel completado / partida ganada**
+- Archivo: `JDSherbert - Pixel Game Essentials SFX Pack - Level Complete 1.wav`
+- Pack: *Pixel Game Essentials SFX Pack*
+- Autor: JDSherbert
 
-The core scanning engine. Can be used standalone or via the editor panel.
+**Fuente bitmap**
+- Archivo: `anuvverbubbla_8x8.png`
+- Autor: Zingot Games
+- Fuente: [OpenGameArt](https://opengameart.org/content/8x8-font-chomps-anuvverbubbla)
 
-```gdscript
-const DependencyScanner = preload("res://addons/scene_dependency_viewer/dependency_scanner.gd")
+**Sprites de ladrillos y pala**
+- Archivo: `Breakout_Tile_Free.png`
+- Autor: [Kenney](https://kenney.nl)
 
-var scanner = DependencyScanner.new()
+**Sprite de pelota**
+- Archivo: `58-Breakout-Tiles.png`
+- Autor: [Cuz](https://opengameart.org/users/cuz) vía [OpenGameArt](https://opengameart.org/content/breakout-brick-breaker-tile-set-free)
 
-# Connect signals
-scanner.scan_progress.connect(func(msg, current, total):
-    print("%s (%d/%d)" % [msg, current, total])
-)
+## Posibles evoluciones
 
-scanner.scan_completed.connect(func(result):
-    print("Found %d files" % result.files.size())
-    print("Broken refs: %d" % result.broken_refs.size())
-    print("Unused: %d" % result.unused_assets.size())
-)
+- **Sistema de extras/bufos**: ladrillos especiales que al romperse sueltan power-ups (pala grande, bola múltiple, disparo...) o debufos (pala pequeña, bola acelerada).
+- **High scores**: tabla de puntuaciones máximas guardada entre sesiones.
+- **Velocidad progresiva de la pelota**: que aumente con cada ladrillo roto, como en el original.
+- **Más niveles** con patrones de ladrillo más elaborados.
+- **Soporte para mando**.
 
-# Run scan
-var result = await scanner.scan_project()
-```
+## Licencia
 
-### Result Structure
-
-```gdscript
-{
-    "files": {
-        "res://path/to/file.tscn": {
-            "type": "scene",          # scene|resource|script|texture|audio|model|font|config|other
-            "deps": ["res://..."],    # Array of dependency paths
-            "uid": "uid://..."        # UID if available
-        }
-    },
-    "reverse_deps": {
-        "res://path/to/texture.png": ["res://scene1.tscn", "res://scene2.tscn"]
-    },
-    "broken_refs": [
-        {
-            "file": "res://scene.tscn",
-            "missing_ref": "res://deleted_texture.png",
-            "line": 0
-        }
-    ],
-    "unused_assets": [
-        "res://old_sprite.png"
-    ]
-}
-```
-
-### Filtering by Type
-
-```gdscript
-# Get only scenes
-var scenes = result.files.keys().filter(func(f): return result.files[f].type == "scene")
-
-# Get only broken references in scripts
-var script_broken = result.broken_refs.filter(func(r): return r.file.ends_with(".gd"))
-```
-
----
-
-## Integration Steps
-
-### Basic
-1. Enable the plugin
-2. Click "Scan Project" in the Dependencies tab
-3. Browse the tree, click files to see their dependencies
-
-### CI/Headless
-Use `DependencyScanner` directly in a headless build or test script:
-
-```gdscript
-func test_dependencies():
-    var scanner = DependencyScanner.new()
-    var result = await scanner.scan_project()
-    assert(result.broken_refs.size() == 0, "Found broken references!")
-    assert(result.unused_assets.size() < 10, "Too many unused assets")
-```
-
----
-
-## FAQ
-
-**Q: Does this slow down the editor?**
-A: No. Scanning is manual (click Scan) and takes 1-3 seconds for most projects. Results are cached until you rescan.
-
-**Q: Does it work with .import files?**
-A: Yes. It parses `.import` files to track the relationship between imported assets and their source files.
-
-**Q: Can I use this in CI/automation?**
-A: Yes. `DependencyScanner` is a standalone class that works headless.
-
-**Q: Does it detect `class_name` usage?**
-A: Yes. Scripts with `class_name` are marked as potentially used (since they can be referenced by type anywhere).
-
-**Q: What about `uid://` references?**
-A: Tracked. The scanner resolves UIDs where possible and includes them in the dependency graph.
-
----
-
-## File Structure
-
-```
-addons/scene_dependency_viewer/
-├── plugin.cfg
-├── plugin.gd
-├── dependency_scanner.gd
-├── dependency_viewer_panel.gd
-├── dependency_viewer_panel.tscn
-└── LICENSE
-```
-
----
-
-## License
-
-MIT — use in personal and commercial projects.
-
-## AI Use
-
-This asset was created by MeshLabDev with the help of an AI coding assistant (Anthropic
-Claude). The product design and feature set were human-directed, and all code and
-documentation were reviewed, tested, and debugged by the developer before release. No
-AI-generated art, audio, 3D models, or other media are included; all screenshots and demo
-media are genuine in-engine captures.
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE.md](LICENSE.md) para más detalles.

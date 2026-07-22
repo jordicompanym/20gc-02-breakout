@@ -19,6 +19,8 @@ shape = SubResource("RectangleShape2D_tf4du")
 
 [node name="muro_roto" type="AudioStreamPlayer" parent="." unique_id=2040321210]
 stream = ExtResource("3_cc7tl")
+bus = &"SFX"
 
 [node name="ladrillo_roto" type="AudioStreamPlayer" parent="." unique_id=2106578580]
 stream = ExtResource("4_oigav")
+bus = &"SFX"

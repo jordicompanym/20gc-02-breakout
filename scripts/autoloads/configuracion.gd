@@ -37,10 +37,10 @@ func dificultad_cfg() -> String:
 	return cfg_actual.get_value("juego","dificultad",2)
 
 func volumen_musica_cfg() -> int:
-	return cfg_actual.get_value("audio","volumen_musica",100)
+	return cfg_actual.get_value("audio","volumen_musica",50)
 
 func volumen_sfx_cfg() -> int:
-	return cfg_actual.get_value("audio","volumen_sfx",100)
+	return cfg_actual.get_value("audio","volumen_sfx",50)
 	
 func pantalla_completa_cfg() -> bool:
 	return cfg_actual.get_value("video","pantalla_completa",false)
@@ -69,10 +69,13 @@ func _generar_cfg_defecto() -> void:
 func _cargar_nueva_cfg() -> void:
 	## esto carga en el server tranlation el idioma que haya en la configuración, si no hay nada, carga el español por defecto
 	TranslationServer.set_locale(cfg_actual.get_value("juego", "idioma", "es"))
-	## dificultad
 	## volumen de musica
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(cfg_actual.get_value("audio","volumen_sfx","10")))
 	## volumen de sfx
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Musica"), linear_to_db(cfg_actual.get_value("audio","volumen_musica","10")))
 	## pantalla completa
+	
+	
 
 ## Funcion para copiar una cfg a otra
 func _copiar_cfg(origen: ConfigFile, destino: ConfigFile) -> void:

@@ -167,7 +167,7 @@ func _rellenar_controles() -> void:
 	for idioma in Configuracion.lista_idiomas_disponibles():
 		var literal := "IDIOMA_%s" % idioma["codigo"].to_upper()
 		$pantalla_opciones/CenterContainer/VBoxContainer/HBoxContainer/select_idioma.add_item(literal, idioma["id"])
-		if idioma["codigo"] == _idioma:			
+		if idioma["codigo"] == _idioma:
 			$pantalla_opciones/CenterContainer/VBoxContainer/HBoxContainer/select_idioma.select(idioma["id"])
 
 	$pantalla_opciones/CenterContainer/VBoxContainer/HBoxContainer3/vol_musica.value = _vol_musica
@@ -182,12 +182,16 @@ func _cambiado_idioma(index : int) -> void:
 
 func _cambiada_vol_musica(nuevo : float) -> void:
 	Configuracion.actualizar_cfg("audio", "volumen_musica", nuevo)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Musica"), linear_to_db(nuevo))
 
 func _cambiada_vol_sfx(nuevo : float) -> void:
 	Configuracion.actualizar_cfg("audio", "volumen_sfx", nuevo)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(nuevo))
 
 func _cambiada_pantalla_completa(nuevo : bool) -> void:
 	Configuracion.actualizar_cfg("video", "pantalla_completa", nuevo)
+	var modo = DisplayServer.WINDOW_MODE_FULLSCREEN if nuevo else DisplayServer.WINDOW_MODE_WINDOWED
+	DisplayServer.window_set_mode(modo)
 
 func _guardar() -> void:
 	Configuracion.guardar_nueva_cfg()

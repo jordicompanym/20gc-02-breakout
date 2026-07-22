@@ -27,3 +27,4 @@ shape = SubResource("CircleShape2D_tf4du")
 
 [node name="rebote" type="AudioStreamPlayer" parent="." unique_id=443742643]
 stream = ExtResource("3_a8f7t")
+bus = &"SFX"
